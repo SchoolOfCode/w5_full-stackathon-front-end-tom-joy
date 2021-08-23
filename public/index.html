@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Travel from your Kitchen</title>
+</head>
+<body>
+    <header>
+        <h1>Travel from your Kitchen</h1>
+        <div id="add-recipe-form">
+            <label class="popupfield" id="recipe-name-label">Name of your recipe</label>
+            <input class="popupfield" id="recipe-name-input">
+            <label class="popupfield" id="country-label">Which country is this from?</label>
+            <select class="popupfield" id="country-input"></select>
+            <label class="popupfield" id="ingredients-label">List the ingredients, seperated by a comma</label>
+            <input class="popupfield" id="ingredients-input">
+            <label class="popupfield" id="steps-label">Please explain how you make this recipe</label>
+            <textarea class="popupfield" id="steps-input"></textarea> 
+            <button class="popupfield" id="submit-button">Submit!</button>    
+        </div>
+        <button id="add-recipe-button">Add a new recipe!</button>
+    </header>
+    <div id="buttons-row">
+        <button class="flag-button" id="Mexico">Mexico</button>
+        <button class="flag-button" id="Japan">Japan</button>
+        <button class="flag-button" id="Spain">Spain</button>
+        <button class="flag-button" id="South Africa">South Africa</button>
+        <button class="flag-button" id="Australia">Australia</button>
+    </div>
+    <table id= "recipe-table" style="width:100%">
+        <tr>
+          <th id="recipe-col-header" style="width:20%">Recipe name</th>
+          <th id="ingredients-col-header"style="width:30%">Ingredients</th> 
+          <th id="steps-col-header"style="width:30%">Steps</th> 
+          <th id="edit-col-header"style="width:10%"></th> 
+          <th id="delete-col-header"style="width:10%"></th> 
+        </tr>
+      </table>
+      <script src="main.js"></script>
+</body>
+</html>
