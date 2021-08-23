@@ -14,7 +14,14 @@
             <label class="popupfield" id="recipe-name-label">Name of your recipe</label>
             <input class="popupfield" id="recipe-name-input">
             <label class="popupfield" id="country-label">Which country is this from?</label>
-            <select class="popupfield" id="country-input"></select>
+            <select class="popupfield" id="country-input">
+                <option class="popupfield" value="none" selected disabled hidden>Select a country</option>
+                <option class="popupfield" value="Mexico">Mexico</option>
+                <option class="popupfield" value="Japan">Japan</option>
+                <option class="popupfield" value="Spain">Spain</option>
+                <option class="popupfield" value="South Africa">South Africa</option>
+                <option class="popupfield" value="Australia">Australia</option>
+            </select>
             <label class="popupfield" id="ingredients-label">List the ingredients, seperated by a comma</label>
             <input class="popupfield" id="ingredients-input">
             <label class="popupfield" id="steps-label">Please explain how you make this recipe</label>
@@ -33,10 +40,10 @@
     <table id= "recipe-table" style="width:100%">
         <tr>
           <th id="recipe-col-header" style="width:20%">Recipe name</th>
-          <th id="ingredients-col-header"style="width:30%">Ingredients</th> 
-          <th id="steps-col-header"style="width:30%">Steps</th> 
-          <th id="edit-col-header"style="width:10%"></th> 
-          <th id="delete-col-header"style="width:10%"></th> 
+          <th id="ingredients-col-header"style="width:35%">Ingredients</th> 
+          <th id="steps-col-header"style="width:35%">Steps</th> 
+          <th id="edit-col-header"style="width:5%"></th> 
+          <th id="delete-col-header"style="width:5%"></th> 
         </tr>
       </table>
       <script src="main.js"></script>
