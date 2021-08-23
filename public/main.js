@@ -1,4 +1,5 @@
 const submitButton = document.querySelector("#add-recipe-button");
+const allFlagButtons = document.querySelectorAll('#flag-button');
 const table = document.querySelector("table");
 
 function renderData(object) {
@@ -11,9 +12,9 @@ function renderData(object) {
     const stepsCol = document.createElement("td");
     const editCol = document.createElement("td");
     const deleteCol = document.createElement("td");
-    const editButton = document.createElement("button", {id="edit-button"});
-    const deleteButton = document.createElement("button", {id="delete-button"});
-    const newRow = document.createElement("tr")
+    const editButton = document.createElement("button", {id:"edit-button"});
+    const deleteButton = document.createElement("button", {id:"delete-button"});
+    const newRow = document.createElement("tr" , {class:"recipe-row"})
 
     //set values of each cell
     nameCol.innerText = `${name}`;
@@ -34,8 +35,8 @@ function renderData(object) {
 }
 
 
-async function fetchData() {
-    const response = await fetch("/recipes");
+async function fetchData(country) {
+    const response = await fetch(`/recipes?search=${country}`);
     const data = await response.json();
     data.payload.forEach(object => renderData(object));
 }
@@ -48,4 +49,16 @@ function submitButtonHandler() {
     })
   }
 
+function flagButtonHandler(event) {
+    ///this line needs to be corrected!!
+    const country = event.target.value
+    /////
+    document.querySelectorAll('.recipe-row').forEach(e => e.remove())
+    fetchData(country);
+}
+
 submitButton.addEventListener('click', submitButtonHandler);
+
+allFlagButtons.forEach(button => {
+    button.addEventListener('click', flagButtonHandler);
+});

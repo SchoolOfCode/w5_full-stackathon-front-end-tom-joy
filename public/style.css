@@ -5,9 +5,18 @@ header {
 }
 
 #add-recipe-form {
+    margin-top: 10%;
+    padding: 25px;
+    border-radius: 8px;
+    background-color: lightgray;
     display: flex;
     flex-flow: column nowrap;
     justify-content: space-around;
+    position: absolute;
+}
+
+#submit-button {
+  margin-top: 10px;
 }
 
 #buttons-row {
@@ -18,7 +27,13 @@ header {
 
 .popupfield {
     visibility: hidden;
+    offset: 30px;
+    padding: 5px;
   }
+
+label {
+  margin-top: 10px;
+}
 
   /* Toggle this class when clicking on the popup container (hide and show the popup) */
 .show {
