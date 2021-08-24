@@ -98,6 +98,27 @@ async function deleteButtonHandler(event) {
       });
   }
 
+async function submitButtonHandler(event) {
+    const row = event.path[2];
+//    const id = 
+    console.log(row.firstChild.firstChild.value)
+    console.log(row.firstChild)
+    console.log(row.firstChild)
+    recipe = row.firstChild.firstChild.value;
+    ingredients = row.secondChild.value;
+    steps = row.thirdChild.value;
+
+    recipeObject = {"recipe": recipe,
+                    "ingredients": ingredients,
+                    "steps": steps};
+
+    const response = await fetch(`http://localhost:3000/recipes/${id}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(recipeObject),
+    });
+  }
+
 function editButtonHandler(event) {
     const row = event.path[2];
     const editCol = row.childNodes[3]
@@ -114,16 +135,42 @@ function editButtonHandler(event) {
     const submitChangeButton = document.createElement("button");
     submitChangeButton.innerHTML = "Submit";
     submitChangeButton.classList.add("submit-buttons");
-    submitChangeButton.addEventListener('click', cancelButtonHandler);
+    submitChangeButton.addEventListener('click', submitButtonHandler);
     editCol.insertBefore(submitChangeButton, editCol.lastChild);
 
-    //change fields to editable
+    //saves the pre-existing text in the table
     recipe = row.firstChild.innerText;
     row.firstChild.remove();
     ingredients = row.firstChild.innerText;
     row.firstChild.remove();
     steps = row.firstChild.innerText;
     row.firstChild.remove();
+
+    //create 3 empty input fields
+    newRecipeName = document.createElement('input');
+    newIngredients = document.createElement('input');
+    newSteps = document.createElement('input');
+
+    //set the values of the input fields to the pre-existing text
+    newRecipeName.value = recipe;
+    newIngredients.value = ingredients;
+    newSteps.value = steps;
+
+    // create 3 new td elemtns
+    newtd1 = document.createElement('td');
+    newtd2 = document.createElement('td');
+    newtd3 = document.createElement('td');
+
+    //append the input fields to the respective td elements
+    newtd1.appendChild(newRecipeName)
+    newtd2.appendChild(newIngredients)
+    newtd3.appendChild(newSteps)
+    
+    //append the td elements to the row
+    row.insertBefore(newtd3, row.firstChild);
+    row.insertBefore(newtd2, row.firstChild);
+    row.insertBefore(newtd1, row.firstChild);
+
   }
 
 function cancelButtonHandler(event) {
