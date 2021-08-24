@@ -15,6 +15,16 @@ header {
     position: absolute;
 }
 
+table, td {
+  text-align: left;
+  vertical-align: text-top;
+}
+
+br {
+  visibility: visible;
+  font-size: large;
+}
+
 #submit-button {
   margin-top: 10px;
 }
