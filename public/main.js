@@ -5,6 +5,7 @@ const table = document.querySelector("table");
 let allDeleteButtons = document.querySelectorAll('.delete-buttons');
 let allEditButtons = document.querySelectorAll('.edit-buttons');
 
+
 function renderData(object) {
     //takes in the name, ingredients and steps for a recipe
     const { id, recipe, ingredients, steps } = object;
@@ -102,6 +103,23 @@ async function submitButtonHandler(event) {
     const row = event.path[2];
     const id = row.lastChild.firstChild.getAttribute("id");
 
+    revertInputToTd(event)
+
+    const response = await fetch(`http://localhost:3000/recipes/${id}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(recipeObject),
+    });
+
+    toggleButtons(event);
+
+
+  }
+
+function revertInputToTd(event) {
+    const row = event.path[2];
+
+    //assign the existing values in the input/textarea to variables and remove table cells
     recipe = row.firstChild.firstChild.value;
     row.firstChild.remove();
     ingredients = row.firstChild.firstChild.value;
@@ -109,17 +127,18 @@ async function submitButtonHandler(event) {
     steps = row.firstChild.firstChild.value;
     row.firstChild.remove();
 
+    //create new table cells and assign the text to them
     newRecipeName = document.createElement('td');
     newIngredients = document.createElement('td');
     newSteps = document.createElement('td');
-
+    newRecipeName.setAttribute("width", "20%");
+    newIngredients.setAttribute("width", "35%");
+    newSteps.setAttribute("width", "35%");
     newRecipeName.innerText = recipe;
     newIngredients.innerText = ingredients;
     ingredientsArray = csvToArray(newIngredients.innerText);
     newSteps.innerText = steps;
     
-    console.log(ingredientsArray);
-
     row.insertBefore(newSteps, row.firstChild);
     row.insertBefore(newIngredients, row.firstChild);
     row.insertBefore(newRecipeName, row.firstChild); 
@@ -128,12 +147,8 @@ async function submitButtonHandler(event) {
                     "ingredients": ingredientsArray,
                     "steps": steps};
 
-    const response = await fetch(`http://localhost:3000/recipes/${id}`, {
-      method: "PATCH",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(recipeObject),
-    });
-  }
+    return recipeObject;
+}
 
 function editButtonHandler(event) {
     const row = event.path[2];
@@ -197,7 +212,22 @@ function editButtonHandler(event) {
   }
 
 function cancelButtonHandler(event) {
+    toggleButtons(event);
+    revertInputToTd(event);
+}
+
+//Remove cancel and submit buttons, add and append edit button to row
+function toggleButtons(event) {
     const row = event.path[2];
+     row.childNodes[3].remove();
+    const editButton = document.createElement("button");
+    const newTd = document.createElement("td")
+    editButton.innerHTML = "Edit";
+    editButton.classList.add("edit-buttons");
+    newTd.appendChild(editButton);
+    row.insertBefore(newTd, row.lastChild);
+
+    editButton.addEventListener('click', editButtonHandler);
 }
 
 function csvToArray(str) {
@@ -234,4 +264,5 @@ function userInputRecipe() {
   document.querySelector("#submit-button").addEventListener("click", (e) => {
     e.preventDefault();
     addNewRecipe();
+    addButtonHandler();
   });
