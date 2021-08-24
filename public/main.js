@@ -7,7 +7,7 @@ let allEditButtons = document.querySelectorAll('.edit-buttons');
 
 function renderData(object) {
     //takes in the name, ingredients and steps for a recipe
-    const { recipe, ingredients, steps } = object;
+    const { id, recipe, ingredients, steps } = object;
 
     //create table elements and edit/delete buttons
     const nameCol = document.createElement("td");
@@ -19,12 +19,13 @@ function renderData(object) {
     const deleteButton = document.createElement("button");
     const newRow = document.createElement("tr")
 
-
     //set ids, classes and innerText values
     editButton.innerHTML = "Edit";
     editButton.classList.add("edit-buttons");
+    editButton.setAttribute("id", id);
     deleteButton.innerHTML = "Delete";
     deleteButton.classList.add("delete-buttons");
+    deleteButton.setAttribute("id", id);
     newRow.classList.add("recipe-row");
 
     //set values of each cell
@@ -66,7 +67,7 @@ function renderData(object) {
 
 
 async function fetchData(country) {
-    const response = await fetch(`http://localhost:3000/recipes?search=${country}`, {
+    const response = await fetch(`http://localhost:3000/recipes?country=${country}`, {
         method: 'GET',
       });
     const data = await response.json();
@@ -88,10 +89,13 @@ function flagButtonHandler(event) {
     fetchData(country);
 }
 
-function deleteButtonHandler(event) {
+async function deleteButtonHandler(event) {
     const row = event.path[2];
-    console.log(row.childNodes[3]);
+    const id = event.target.getAttribute("id");
     row.remove();
+    const response = await fetch(`http://localhost:3000/recipes/${id}`, {
+        method: 'DELETE',
+      });
   }
 
 function editButtonHandler(event) {
