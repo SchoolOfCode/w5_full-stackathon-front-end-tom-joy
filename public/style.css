@@ -20,6 +20,11 @@ table, td {
   vertical-align: text-top;
 }
 
+tr {
+  display: flex;
+  align-items: flex-start;
+}
+
 br {
   visibility: visible;
   font-size: large;

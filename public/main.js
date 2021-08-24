@@ -27,6 +27,9 @@ function renderData(object) {
     deleteButton.classList.add("delete-buttons");
     deleteButton.setAttribute("id", id);
     newRow.classList.add("recipe-row");
+    nameCol.setAttribute("width", "20%");
+    ingredientsCol.setAttribute("width", "35%");
+    stepsCol.setAttribute("width", "35%");
 
     //set values of each cell
     nameCol.innerText = `${recipe}`;
@@ -65,7 +68,6 @@ function renderData(object) {
     
 }
 
-
 async function fetchData(country) {
     const response = await fetch(`http://localhost:3000/recipes?country=${country}`, {
         method: 'GET',
@@ -73,8 +75,6 @@ async function fetchData(country) {
     const data = await response.json();
     data.payload.forEach(object => renderData(object));
 }
-
-
 
 function addButtonHandler() {
     const popupField = document.querySelectorAll(".popupfield");
@@ -139,14 +139,14 @@ function editButtonHandler(event) {
     const row = event.path[2];
     const editCol = row.childNodes[3]
 
-    //add cancel button
+    //add and append cancel button to row
     const cancelButton = document.createElement("button");
     cancelButton.innerHTML = "Cancel";
     cancelButton.classList.add("cancel-buttons");
     editCol.appendChild(cancelButton);
     cancelButton.addEventListener('click', cancelButtonHandler);
 
-    //Remove edit button and change to submit
+    //Remove edit button and add append submit button
     editCol.firstChild.remove();
     const submitChangeButton = document.createElement("button");
     submitChangeButton.innerHTML = "Submit";
@@ -154,23 +154,30 @@ function editButtonHandler(event) {
     submitChangeButton.addEventListener('click', submitButtonHandler);
     editCol.insertBefore(submitChangeButton, editCol.lastChild);
 
-    //saves the pre-existing text in the table
+    //saves the pre-existing text from the table
     recipe = row.firstChild.innerText;
     row.firstChild.remove();
-    ingredients = row.firstChild.innerText;
+    ingredients = row.firstChild.innerText.split(/\n/);
+    console.log(ingredients);
     row.firstChild.remove();
     steps = row.firstChild.innerText;
     row.firstChild.remove();
 
-    //create 3 empty input fields
+    //create 3 empty input/text area fields and set size of textareas
     newRecipeName = document.createElement('input');
     newIngredients = document.createElement('textarea');
     newSteps = document.createElement('textarea');
+    newIngredients.setAttribute("rows", 15);
+    newIngredients.setAttribute("cols", 50);
+    newSteps.setAttribute("rows", 15);
+    newSteps.setAttribute("cols", 50);
 
     //set the values of the input fields to the pre-existing text
     newRecipeName.value = recipe;
-    newIngredients.value = ingredients;
     newSteps.value = steps;
+    ingredients.forEach(ingredient => {
+        newIngredients.value += `${ingredient},\n`
+    });
 
     // create 3 new td elemtns
     newtd1 = document.createElement('td');
