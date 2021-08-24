@@ -210,13 +210,14 @@ allFlagButtons.forEach(button => {
 function userInputRecipe() {
     const recipe = document.querySelector("#recipe-name-input").value;
     const country = document.querySelector("#country-input").value;
-    const ingredients = document.querySelector("#ingredients-input").value;
-    const stpes = document.querySelector("#steps-input").value;
-    return { recipe, country, ingredients, stpes };
+    const ingredientsList = document.querySelector("#ingredients-input").value;
+    const steps = document.querySelector("#steps-input").value;
+    const ingredients = csvToArray(ingredientsList);
+    return { recipe, country, ingredients, steps };
   }
   
   async function addNewRecipe() {
-    const response = await fetch("/recipes", {
+    const response = await fetch(`http://localhost:3000/recipes/`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(userInputRecipe()),
@@ -225,5 +226,5 @@ function userInputRecipe() {
   
   document.querySelector("#submit-button").addEventListener("click", (e) => {
     e.preventDefault();
-    userInputRecipe();
+    addNewRecipe();
   });
