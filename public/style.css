@@ -1,21 +1,47 @@
+* {
+  font-family: Verdana;
+  padding: 20;
+  margin: 20;
+  background-color: #cae7df;
+}
+
 header {
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: space-around;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+  margin: 2em;
+  font-size: 20px;
+}
+
+.flag-button,
+.addrecipe,
+#submit-button:hover {
+  cursor: pointer;
+}
+
+.img {
+  max-width: 70%;
+  height: auto;
+  margin: 10em;
+}
+
+#recipe-table {
+  margin: 2em;
 }
 
 #add-recipe-form {
-    margin-top: 10%;
-    padding: 25px;
-    border-radius: 8px;
-    background-color: lightgray;
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: space-around;
-    position: absolute;
+  margin-top: 10%;
+  padding: 25px;
+  border-radius: 8px;
+  background-color: #2a3166;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-around;
+  position: absolute;
 }
 
-table, td {
+table,
+td {
   text-align: left;
   vertical-align: text-top;
 }
@@ -23,6 +49,7 @@ table, td {
 tr {
   display: flex;
   align-items: flex-start;
+  color: #2a3166;
 }
 
 br {
@@ -32,38 +59,77 @@ br {
 
 #submit-button {
   margin-top: 10px;
+  background-color: #f4abaa;
+  color: #2a3166;
+}
+
+#recipe-name-label,
+#country-label,
+#ingredients-label,
+#steps-label {
+  background-color: #cae7df;
+  color: #2a3166;
+}
+
+.flag-button {
+  background-color: #2a3166;
+  color: white;
+  padding: 0.5em;
 }
 
 #buttons-row {
-    padding: 30px;
-    display: flex;
-    justify-content: space-evenly;
+  padding: 30px;
+  display: flex;
+  justify-content: space-evenly;
 }
 
 .popupfield {
-    visibility: hidden;
-    offset: 30px;
-    padding: 5px;
-  }
+  visibility: hidden;
+  offset: 30px;
+  padding: 5px;
+  background-color: white;
+}
 
 label {
   margin-top: 10px;
 }
 
-  /* Toggle this class when clicking on the popup container (hide and show the popup) */
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
 .show {
-    visibility: visible;
-    -webkit-animation: fadeIn 1s;
-    animation: fadeIn 1s
+  visibility: visible;
+  -webkit-animation: fadeIn 1s;
+  animation: fadeIn 1s;
 }
 
 /* Add animation (fade in the popup) */
 @-webkit-keyframes fadeIn {
-    from {opacity: 0;}
-    to {opacity: 1;}
+  from {
+    opacity: 0;
   }
-  
-  @keyframes fadeIn {
-    from {opacity: 0;}
-    to {opacity:1 ;}
+  to {
+    opacity: 1;
   }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+#recipe-table {
+  margin-left: 3em;
+  margin-right: 3em;
+  margin-bottom: 5em;
+}
+
+.addrecipe {
+  padding: 2em;
+  background-color: #f4abaa;
+  color: #2a3166;
+  font-size: 15px;
+  font-weight: bold;
+}
