@@ -100,16 +100,32 @@ async function deleteButtonHandler(event) {
 
 async function submitButtonHandler(event) {
     const row = event.path[2];
-//    const id = 
-    console.log(row.firstChild.firstChild.value)
-    console.log(row.firstChild)
-    console.log(row.firstChild)
+    const id = row.lastChild.firstChild.getAttribute("id");
+
     recipe = row.firstChild.firstChild.value;
-    ingredients = row.secondChild.value;
-    steps = row.thirdChild.value;
+    row.firstChild.remove();
+    ingredients = row.firstChild.firstChild.value;
+    row.firstChild.remove();
+    steps = row.firstChild.firstChild.value;
+    row.firstChild.remove();
+
+    newRecipeName = document.createElement('td');
+    newIngredients = document.createElement('td');
+    newSteps = document.createElement('td');
+
+    newRecipeName.innerText = recipe;
+    newIngredients.innerText = ingredients;
+    ingredientsArray = csvToArray(newIngredients.innerText);
+    newSteps.innerText = steps;
+    
+    console.log(ingredientsArray);
+
+    row.insertBefore(newSteps, row.firstChild);
+    row.insertBefore(newIngredients, row.firstChild);
+    row.insertBefore(newRecipeName, row.firstChild); 
 
     recipeObject = {"recipe": recipe,
-                    "ingredients": ingredients,
+                    "ingredients": ingredientsArray,
                     "steps": steps};
 
     const response = await fetch(`http://localhost:3000/recipes/${id}`, {
@@ -148,8 +164,8 @@ function editButtonHandler(event) {
 
     //create 3 empty input fields
     newRecipeName = document.createElement('input');
-    newIngredients = document.createElement('input');
-    newSteps = document.createElement('input');
+    newIngredients = document.createElement('textarea');
+    newSteps = document.createElement('textarea');
 
     //set the values of the input fields to the pre-existing text
     newRecipeName.value = recipe;
@@ -177,7 +193,10 @@ function cancelButtonHandler(event) {
     const row = event.path[2];
 }
 
-
+function csvToArray(str) {
+    newArray = str.split(",")
+    return newArray;
+}
 
 addButton.addEventListener('click', addButtonHandler);
 
@@ -187,4 +206,24 @@ allFlagButtons.forEach(button => {
     button.addEventListener('click', flagButtonHandler);
 });
 
-
+// Joy - get data from 'add a new recipe' user input
+function userInputRecipe() {
+    const recipe = document.querySelector("#recipe-name-input").value;
+    const country = document.querySelector("#country-input").value;
+    const ingredients = document.querySelector("#ingredients-input").value;
+    const stpes = document.querySelector("#steps-input").value;
+    return { recipe, country, ingredients, stpes };
+  }
+  
+  async function addNewRecipe() {
+    const response = await fetch("/recipes", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(userInputRecipe()),
+    });
+  }
+  
+  document.querySelector("#submit-button").addEventListener("click", (e) => {
+    e.preventDefault();
+    userInputRecipe();
+  });
