@@ -1,0 +1,137 @@
+* {
+  font-family: Verdana;
+  padding: 20;
+  margin: 20;
+  background-color: #cae7df;
+}
+
+header {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+  margin: 2em;
+  font-size: 20px;
+}
+
+.flag-button,
+.addrecipe,
+#submit-button:hover {
+  cursor: pointer;
+}
+
+.img {
+  max-width: 70%;
+  height: auto;
+  margin: 10em;
+}
+
+#recipe-table {
+  margin: 2em;
+}
+
+#add-recipe-form {
+  margin-top: 10%;
+  padding: 25px;
+  border-radius: 8px;
+  background-color: #2a3166;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-around;
+  position: absolute;
+}
+
+table,
+td {
+  text-align: left;
+  vertical-align: text-top;
+}
+
+tr {
+  display: flex;
+  align-items: flex-start;
+  color: #2a3166;
+}
+
+br {
+  visibility: visible;
+  font-size: large;
+}
+
+#submit-button {
+  margin-top: 10px;
+  background-color: #f4abaa;
+  color: #2a3166;
+}
+
+#recipe-name-label,
+#country-label,
+#ingredients-label,
+#steps-label {
+  background-color: #cae7df;
+  color: #2a3166;
+  font-size: 15px;
+}
+
+.flag-button {
+  background-color: #2a3166;
+  color: white;
+  padding: 0.5em;
+}
+
+#buttons-row {
+  padding: 30px;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.popupfield {
+  visibility: hidden;
+  offset: 30px;
+  padding: 5px;
+  background-color: white;
+}
+
+label {
+  margin-top: 10px;
+}
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.show {
+  visibility: visible;
+  -webkit-animation: fadeIn 1s;
+  animation: fadeIn 1s;
+}
+
+/* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+#recipe-table {
+  margin-left: 3em;
+  margin-right: 3em;
+  margin-bottom: 5em;
+}
+
+.addrecipe {
+  padding-left: 2em;
+  padding-right: 2em;
+  background-color: #f4abaa;
+  color: #2a3166;
+  font-size: 15px;
+  font-weight: bold;
+}

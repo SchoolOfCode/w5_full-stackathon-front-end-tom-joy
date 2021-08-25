@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Travel from your Kitchen</title>
+</head>
+<body>
+    <header>
+        <h1 style="color: #2A3166;">Travel From Your Kitchen</h1>
+        <div class="popupfield" id="add-recipe-form">
+            <label class="popupfield" id="recipe-name-label">Name of your recipe</label>
+            <input class="popupfield" id="recipe-name-input">
+            <label class="popupfield" id="country-label">Which country is this from?</label>
+            <select class="popupfield" id="country-input">
+                <option class="popupfield" value="none" selected disabled hidden>Select a country</option>
+                <option class="popupfield" value="Mexico">Mexico</option>
+                <option class="popupfield" value="Japan">Japan</option>
+                <option class="popupfield" value="Spain">Spain</option>
+                <option class="popupfield" value="South Africa">South Africa</option>
+                <option class="popupfield" value="Australia">Australia</option>
+            </select>
+            <label class="popupfield" id="ingredients-label">List the ingredients, seperated by a comma</label>
+            <input class="popupfield" id="ingredients-input">
+            <label class="popupfield" id="steps-label">Please explain how you make this recipe</label>
+            <textarea class="popupfield" id="steps-input"></textarea> 
+            <button class="popupfield" id="submit-button">Submit!</button>    
+        </div>
+        <button class="addrecipe" id="add-recipe-button">Add a new recipe!</button>
+    </header>
+    <div id="buttons-row">
+        <button class="flag-button" id="Mexico">Mexico</button>
+        <button class="flag-button" id="Japan">Japan</button>
+        <button class="flag-button" id="Spain">Spain</button>
+        <button class="flag-button" id="South Africa">South Africa</button>
+        <button class="flag-button" id="Australia">Australia</button>
+    </div>
+    <div>
+        <img class='img' src="/Users/Joy/Desktop/github_joy/week5/w5_full-stackathon-front-end-tom-joy/images/4.jpg" alt="cooking ingredients" style="display:block; margin:auto;"/>
+    </div>
+    <table id= "recipe-table" style="width:100%">
+        <tr>
+          <th id="recipe-col-header" style="width:20%">Recipe name</th>
+          <th id="ingredients-col-header"style="width:35%">Ingredients</th> 
+          <th id="steps-col-header"style="width:35%">Steps</th> 
+          <th id="edit-col-header"style="width:5%"></th> 
+          <th id="delete-col-header"style="width:5%"></th> 
+        </tr>
+      </table>
+      <script src="main.js"></script>
+</body>
+</html>
