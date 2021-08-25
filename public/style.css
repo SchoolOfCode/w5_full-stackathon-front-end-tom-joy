@@ -69,6 +69,7 @@ br {
 #steps-label {
   background-color: #cae7df;
   color: #2a3166;
+  font-size: 15px;
 }
 
 .flag-button {
@@ -127,7 +128,8 @@ label {
 }
 
 .addrecipe {
-  padding: 2em;
+  padding-left: 2em;
+  padding-right: 2em;
   background-color: #f4abaa;
   color: #2a3166;
   font-size: 15px;
